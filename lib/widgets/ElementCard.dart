@@ -5,18 +5,19 @@ class ElementCard extends StatelessWidget {
   final String name;
   final String symbol;
   final int atomicNo;
-  final double atomicMass;
+  final String atomicMass;
   ElementCard({this.atomicMass,this.atomicNo,this.name,this.symbol});
 
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 80,
+      margin: EdgeInsets.symmetric(vertical: 10),
       decoration: new BoxDecoration(
         color: Colors.grey,
-        borderRadius: BorderRadius.circular(7),
+        borderRadius: BorderRadius.circular(10),
       ),
-      width: MediaQuery.of(context).size.width * 0.9,
+      //width: MediaQuery.of(context).size.width * 0.9,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
@@ -65,13 +66,15 @@ class ElementCard extends StatelessWidget {
               color: Colors.lightGreenAccent,
             ),
             margin: EdgeInsets.symmetric(horizontal: 10),
-            child: Text(
-              atomicNo.toString(),
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 50
-              ),
-              ),
+            child: Center(
+              child: Text(
+                atomicNo.toString(),
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 30
+                ),
+                ),
+            ),
           ),
         ],
       ),
