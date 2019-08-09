@@ -27,7 +27,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: Center(
           child: Text(
-            "Periodo",
+            "Periodo.",
             style: kAppBarTitleTextStyle,
           ),
         ),
@@ -52,7 +52,7 @@ class _HomePageState extends State<HomePage> {
                           Navigator.push(context,
                            PageTransition(
                              type: PageTransitionType.leftToRight,
-                             child:ElementPage(newData[index]),
+                             child:ElementPage(newData[index],index,newData),
                            ),
                            );
                         },

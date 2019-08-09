@@ -1,13 +1,14 @@
 
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:periodo/constant.dart';
 class ElementPage extends StatelessWidget {
   final Map<String, dynamic> jsonVar;
-  ElementPage( this.jsonVar);
+  final index;
+  final newData;
+  ElementPage( this.jsonVar,this.index,this.newData);
   @override
   Widget build(BuildContext context) {
-    timeDilation=0.5;
+    // timeDilation=0.5;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Material App',
@@ -30,8 +31,16 @@ class ElementPage extends StatelessWidget {
               child: Container(
                   height: 450,
                   margin: EdgeInsets.all(30),
-                  //padding: EdgeInsets.all(5),
+                  padding: EdgeInsets.only(left:25),
                   decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                          color: Colors.black54,
+                          offset: new Offset(0.0, 25.0),
+                          blurRadius: 35.0,
+                          spreadRadius: 2,
+                        )
+                      ],
                     borderRadius: BorderRadius.circular(10),
                     color: Colors.white,
                   ),
@@ -102,3 +111,32 @@ class ElementPage extends StatelessWidget {
         );
   }
 }
+
+
+
+//SwipeTo Netxt Page Code
+// Dismissible(
+//                 resizeDuration: null,
+//                 onDismissed: (DismissDirection direction) {
+//                     var x=direction == DismissDirection.endToStart ? 1 : -1;
+//                     var y=index;
+//                     if(x==1){
+//                        Navigator.push(context,
+//                            PageTransition(
+//                              type: PageTransitionType.rightToLeft,
+//                              child:ElementPage(newData[y++],y++,newData),
+//                            ),
+//                         );
+//                     }else{
+//                        Navigator.push(context,
+//                            PageTransition(
+//                              type: PageTransitionType.leftToRight,
+//                              child:ElementPage(newData[y--],y--,newData),
+//                            ),
+//                         );
+//                     }
+                   
+
+//                   },
+//                 key: new ValueKey(index),
+//                 child: 

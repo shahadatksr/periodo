@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:periodo/constant.dart';
 
 class ElementCard extends StatelessWidget {
@@ -12,7 +11,7 @@ class ElementCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    timeDilation=0.5;
+    // timeDilation=0.5;
     return Container(
       height: 120,
       margin: EdgeInsets.symmetric(vertical: 10),
@@ -20,11 +19,11 @@ class ElementCard extends StatelessWidget {
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
         boxShadow: [
-            new BoxShadow(
+           BoxShadow(
               color: Colors.black54,
-              offset: new Offset(0.0, 5.0),
-              blurRadius: 35.0,
-              spreadRadius: 2,
+              offset: new Offset(0.0, 15.0),
+              blurRadius: 25.0,
+              spreadRadius: -2,
             )
           ],
       ),
