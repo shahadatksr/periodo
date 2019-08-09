@@ -1,8 +1,15 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:periodo/constant.dart';
+
+import 'elementPage.dart';
+import 'widgets/ElementCard.dart';
 void main()=>runApp(new MaterialApp(
   debugShowCheckedModeBanner: false,
   theme: ThemeData(
-    primarySwatch: Colors.teal,
+//    primarySwatch: Colors.teal,
   ),
   home: new HomePage(),
 ));
@@ -16,91 +23,66 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: yellowColor,
       appBar: AppBar(
-        title: Text("Periodo"),
+        title: Center(
+          child: Text(
+            "Periodo.",
+            style: kAppBarTitleTextStyle,
+          ),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
       body: Center(
-        child: new ElementCard(name: 'Hydrogen',atomicMass: 2.0,symbol: 'H',atomicNo: 1),
+        child: FutureBuilder(
+                future: DefaultAssetBundle
+                    .of(context)
+                    .loadString('Elements/elements_json.json'),
+                builder: (context, snapshot) {
+                  // Decode the JSON
+                  var newData = json.decode(snapshot.data.toString());
+
+                  return ListView.builder(
+                    // Build the ListView
+                    itemBuilder: (BuildContext context, int index) {
+                      return FlatButton(
+                        onPressed: (){
+                          //print(newData[index]);
+                          Navigator.push(context,
+                           PageTransition(
+                             type: PageTransitionType.leftToRight,
+                             child:ElementPage(newData[index],index,newData),
+                           ),
+                           );
+                        },
+                        child: ElementCard(
+                          name: newData[index]['name'],
+                          atomicMass: newData[index]['atomicMass'],
+                          symbol: newData[index]['symbol'],
+                          atomicNo: newData[index]['atomicNumber'],
+                          tagg:newData[index]['name'],)
+                      );
+                    },
+                    itemCount: newData == null ? 0 : newData.length,
+                  );
+                })
+      //Here  
       ),
     );
   }
 }
 
-class ElementCard extends StatelessWidget {
-  
-  final String name;
-  final String symbol;
-  final int atomicNo;
-  final double atomicMass;
-  ElementCard({this.atomicMass,this.atomicNo,this.name,this.symbol});
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      height: 80,
-      decoration: new BoxDecoration(
-        color: Colors.grey,
-        borderRadius: BorderRadius.circular(7),
-      ),
-      width: MediaQuery.of(context).size.width * 0.9,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.start,
-        crossAxisAlignment: CrossAxisAlignment.center,
-        children: <Widget>[
-          Container(
-            height: 60,
-            width: 60,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
-              color: Colors.indigo,
-            ),
-            margin: EdgeInsets.symmetric(horizontal: 10),
-            child: Text(
-              symbol,
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 50
-              ),
-              ),
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-                Text(
-                  name,
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
-                  ),
-                  Text(
-                  "$atomicMass gms",
-                  style: TextStyle(
-                    fontSize: 16,
-                  ),
-                  )
-              ],
-            ),
-          ),
-          Container(
-            height: 60,
-            width: 60,
-            decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(20),
-              color: Colors.lightGreenAccent,
-            ),
-            margin: EdgeInsets.symmetric(horizontal: 10),
-            child: Text(
-              atomicNo.toString(),
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 50
-              ),
-              ),
-          ),
-        ],
-      ),
-    );
-  }
-}
+//ElementCard(name: newData[index]['name'],atomicMass: newData[index]['atomicMass'],symbol: newData[index]['symbol'],atomicNo: newData[index]['atomicNo']),
+//ElementCard(name: 'Hydrogen',atomicMass: 2.0,symbol: 'H',atomicNo: 1),
+// Card(
+//                         child: Column(
+//                           crossAxisAlignment: CrossAxisAlignment.stretch,
+//                           children: <Widget>[
+//                             Text("Name: " + newData[index]['name']),
+//                             Text("Symbol: " + newData[index]['symbol']),
+//                             Text("Mass: " + newData[index]['atomicMass']),
+//                             Text("Atomic No: " + newData[index]['atomicNo'])
+//                           ],
+//                         ),
+//                       );
