@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/scheduler.dart';
+import 'package:periodo/constant.dart';
 
 class ElementCard extends StatelessWidget {
   final String tagg;
@@ -10,12 +12,21 @@ class ElementCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    timeDilation=0.5;
     return Container(
       height: 120,
       margin: EdgeInsets.symmetric(vertical: 10),
       decoration: new BoxDecoration(
         color: Colors.white,
         borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+            new BoxShadow(
+              color: Colors.black54,
+              offset: new Offset(0.0, 5.0),
+              blurRadius: 35.0,
+              spreadRadius: 2,
+            )
+          ],
       ),
       //width: MediaQuery.of(context).size.width * 0.9,
       child: Row(
@@ -39,9 +50,7 @@ class ElementCard extends StatelessWidget {
                 child: Text(
                   symbol,
                   textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 45
-                  ),
+                  style: kSymbolTextStyle
                   ),
               ),
             ),
@@ -53,9 +62,7 @@ class ElementCard extends StatelessWidget {
               children: <Widget>[
                 Text(
                   name,
-                  style: TextStyle(
-                    fontSize: 20,
-                  ),
+                  style:kNameTextStyle
                   ),
                   Text(
                   "$atomicMass gms",

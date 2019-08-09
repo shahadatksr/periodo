@@ -1,6 +1,8 @@
 import 'dart:convert';
 
 import 'package:flutter/material.dart';
+import 'package:page_transition/page_transition.dart';
+import 'package:periodo/constant.dart';
 
 import 'elementPage.dart';
 import 'widgets/ElementCard.dart';
@@ -21,9 +23,16 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.blueGrey[50],
+      backgroundColor: yellowColor,
       appBar: AppBar(
-        title: Text("Periodo"),
+        title: Center(
+          child: Text(
+            "Periodo",
+            style: kAppBarTitleTextStyle,
+          ),
+        ),
+        backgroundColor: Colors.transparent,
+        elevation: 0,
       ),
       body: Center(
         child: FutureBuilder(
@@ -39,11 +48,11 @@ class _HomePageState extends State<HomePage> {
                     itemBuilder: (BuildContext context, int index) {
                       return FlatButton(
                         onPressed: (){
-                          print(newData[index]);
+                          //print(newData[index]);
                           Navigator.push(context,
-                           MaterialPageRoute(
-                             builder: (BuildContext context)=>
-                             ElementPage(newData[index]),
+                           PageTransition(
+                             type: PageTransitionType.leftToRight,
+                             child:ElementPage(newData[index]),
                            ),
                            );
                         },
