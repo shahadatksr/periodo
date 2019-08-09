@@ -2,11 +2,12 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 
+import 'elementPage.dart';
 import 'widgets/ElementCard.dart';
 void main()=>runApp(new MaterialApp(
   debugShowCheckedModeBanner: false,
   theme: ThemeData(
-    primarySwatch: Colors.teal,
+//    primarySwatch: Colors.teal,
   ),
   home: new HomePage(),
 ));
@@ -20,6 +21,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueGrey[50],
       appBar: AppBar(
         title: Text("Periodo"),
       ),
@@ -38,12 +40,19 @@ class _HomePageState extends State<HomePage> {
                       return FlatButton(
                         onPressed: (){
                           print(newData[index]);
+                          Navigator.push(context,
+                           MaterialPageRoute(
+                             builder: (BuildContext context)=>
+                             ElementPage(newData[index]),
+                           ),
+                           );
                         },
                         child: ElementCard(
                           name: newData[index]['name'],
                           atomicMass: newData[index]['atomicMass'],
                           symbol: newData[index]['symbol'],
-                          atomicNo: newData[index]['atomicNumber']),
+                          atomicNo: newData[index]['atomicNumber'],
+                          tagg:newData[index]['name'],)
                       );
                     },
                     itemCount: newData == null ? 0 : newData.length,
