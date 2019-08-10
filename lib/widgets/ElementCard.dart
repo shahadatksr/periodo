@@ -14,10 +14,10 @@ class ElementCard extends StatelessWidget {
     // timeDilation=0.5;
     return Container(
       height: 120,
-      margin: EdgeInsets.symmetric(vertical: 10),
+      margin: EdgeInsets.symmetric(vertical: 20),
       decoration: new BoxDecoration(
         color: Colors.white,
-        borderRadius: BorderRadius.circular(10),
+        borderRadius: BorderRadius.circular(5),
         boxShadow: [
            BoxShadow(
               color: Colors.black54,
@@ -38,11 +38,16 @@ class ElementCard extends StatelessWidget {
               height: 120,
               width: 100,
               decoration: BoxDecoration(
+                gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,//1 2 3 4 5 6 
+                  colors: [kAltColorList[(atomicNo%5)], kColorList[(atomicNo%5)+1]],
+                  ),
                 borderRadius: BorderRadius.only(
-                        topLeft: Radius.circular(10.0),
-                        bottomLeft: Radius.circular(10.0),
+                        topLeft: Radius.circular(5),
+                        bottomLeft: Radius.circular(5),
                 ),
-                color: Colors.indigo,
+                //color: Colors.indigo,
               ),
               margin: EdgeInsets.only(right: 10),
               child: Center(
@@ -77,12 +82,13 @@ class ElementCard extends StatelessWidget {
             width: 60,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(20),
-              color: Colors.lightGreenAccent,
+              color: Colors.lightGreenAccent[50],
             ),
             margin: EdgeInsets.symmetric(horizontal: 10),
             child: Center(
               child: Text(
-                atomicNo.toString(),
+                '',
+                //atomicNo.toString(),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 30
