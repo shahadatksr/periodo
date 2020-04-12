@@ -1,4 +1,4 @@
-package com.example.Periodo
+package com.example.periodo
 
 import androidx.annotation.NonNull;
 import io.flutter.embedding.android.FlutterActivity
