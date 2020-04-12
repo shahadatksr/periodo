@@ -23,7 +23,7 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: yellowColor,
+      backgroundColor: kBackgroundColor,
       appBar: AppBar(
         title: Center(
           child: Text(
@@ -67,22 +67,7 @@ class _HomePageState extends State<HomePage> {
                     itemCount: newData == null ? 0 : newData.length,
                   );
                 })
-      //Here  
       ),
     );
   }
 }
-
-//ElementCard(name: newData[index]['name'],atomicMass: newData[index]['atomicMass'],symbol: newData[index]['symbol'],atomicNo: newData[index]['atomicNo']),
-//ElementCard(name: 'Hydrogen',atomicMass: 2.0,symbol: 'H',atomicNo: 1),
-// Card(
-//                         child: Column(
-//                           crossAxisAlignment: CrossAxisAlignment.stretch,
-//                           children: <Widget>[
-//                             Text("Name: " + newData[index]['name']),
-//                             Text("Symbol: " + newData[index]['symbol']),
-//                             Text("Mass: " + newData[index]['atomicMass']),
-//                             Text("Atomic No: " + newData[index]['atomicNo'])
-//                           ],
-//                         ),
-//                       );

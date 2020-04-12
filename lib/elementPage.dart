@@ -23,7 +23,7 @@ class ElementPage extends StatelessWidget {
               ),
           ),
         ),
-        backgroundColor: yellowColor,
+        backgroundColor: kBackgroundColor,
         body: Stack(
           children: <Widget>[
             Align(
@@ -96,6 +96,11 @@ class ElementPage extends StatelessWidget {
             height: 120,
             width: 100,
             decoration: BoxDecoration(
+              gradient: LinearGradient(
+                  begin: Alignment.topRight,
+                  end: Alignment.bottomLeft,//1 2 3 4 5 6 
+                  colors: [kAltColorList[(jsonVar['atomicNumber']%5)], kColorList[(jsonVar['atomicNumber']%5)+1]],
+                  ),
               borderRadius: BorderRadius.circular(10),
               color: Colors.indigo,
             ),
